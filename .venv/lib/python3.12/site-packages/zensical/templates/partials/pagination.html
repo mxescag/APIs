@@ -1,0 +1,30 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% if pagination.items %}
+  <nav class="md-pagination">
+    {% for item in pagination.items %}
+      {% if item.type == "current_page" %}
+        <span class="md-pagination__current">{{ item.value }}</span>
+      {% elif item.type == "span" %}
+        <span class="md-pagination__dots">{{ item.value }}</span>
+      {% elif item.type == "text" %}
+        {{ item.value }}
+      {% else %}
+        <a href="{{ item.url | url }}" class="md-pagination__link">
+          {% if item.type == "first_page" %}
+            {% include ".icons/material/chevron-double-left.svg" %}
+          {% elif item.type == "previous_page" %}
+            {% include ".icons/material/chevron-left.svg" %}
+          {% elif item.type == "next_page" %}
+            {% include ".icons/material/chevron-right.svg" %}
+          {% elif item.type == "last_page" %}
+            {% include ".icons/material/chevron-double-right.svg" %}
+          {% else %}
+            {{ item.value }}
+          {% endif %}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+{% endif %}
